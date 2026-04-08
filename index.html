@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FDFBF7">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Beads App</title>
+<!-- holy looking font HSAHAHHA -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+</head>
+<body>
+<div class="phone L" id="ph">
+  <div class="scroll" id="scr">
+    <!-- Prayerr view====================================================================================== -->
+    <div id="vPray">
+      <div class="hdr">
+        <div class="hdr-top">
+          <div class="htag">Beads App</div>
+          <!-- Dark gamer mode button====================================================================== -->
+          <button class="dtoggle" onclick="toggleDark()"><div class="tdot"></div></button>
+        </div>
+        <!-- Day mystery detect============================================================================ -->
+        <div class="hday">The <em id="mtEM">Joyful</em> Mysteries</div>
+      </div>
+      <div class="dayinfo"><div class="daydot"></div><div class="daytxt" id="dayTxt">Monday · Joyful Mysteries</div></div>
+      <div class="tabs" id="tabRow">
+        <div class="tab" data-t="Joyful" onclick="selType('Joyful')">Joyful</div>
+        <div class="tab" data-t="Sorrowful" onclick="selType('Sorrowful')">Sorrowful</div>
+        <div class="tab" data-t="Glorious" onclick="selType('Glorious')">Glorious</div>
+        <div class="tab" data-t="Luminous" onclick="selType('Luminous')">Luminous</div>
+      </div>
+      <div class="srow">
+        <!-- Progresion view================================================================================ -->
+        <span class="sctr" id="sCtr">Step 1 of 59</span>
+        <span class="ppill" id="pPill">0% complete</span>
+      </div>
+      <div class="rwrap"><svg class="rsvg" viewBox="0 0 330 290" id="rSVG"></svg></div>
+      <div class="backrow">
+        <!-- Revert Buton=================================================================================== -->
+        <button class="backbtn" onclick="goBack()">
+          <span class="bico">&#8249;</span>
+          <span class="blbl">Back</span>
+        </button>
+      </div>
+      <!-- Snippet Card  =================================================================================== -->
+      <div class="mcard">
+        <div class="mnum" id="mN">Introduction</div>
+        <div class="mname" id="mNm">Opening Prayers<br><em>of the Rosary</em></div>
+        <div class="mfruit">Fruit &middot; <span id="mFr">Preparation</span></div>
+      </div>
+      <div class="psec">
+        <div class="phdr">
+          <div class="ptitle" id="pTit">Apostles' Creed</div>
+          <div class="pcnt" id="pCnt"></div>
+        </div>
+        <div class="ptxt" id="pTxt"></div>
+      </div>
+    </div>
+
+    <!-- Ending screen=================================================================================== -->
+    <div id="vDone" style="display:none;">
+      <div class="hdr">
+        <div class="hdr-top">
+          <div class="htag">Beads App</div>
+          <button class="dtoggle" onclick="toggleDark()"><div class="tdot"></div></button>
+        </div>
+      </div>
+      <div class="done-wrap">
+        <div class="done-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="22" stroke="#C9A96E" stroke-width="1.5" stroke-opacity="0.4"/>
+            <path d="M14 24L21 31L34 17" stroke="#C9A96E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="done-title">Rosary Complete</div>
+        <div class="done-sub">May Our Lady intercede for you<br>and all those you prayed for.</div>
+        <button class="done-reset" onclick="resetRosary()">Pray Again</button>
+      </div>
+    </div>
+
+    <!-- [Prayers Section]=================================================================================== -->
+    <div id="vLib" style="display:none;">
+      <div class="hdr">
+        <div class="hdr-top">
+          <div class="htag">Beads App - Prayers Library</div>
+          <button class="dtoggle" onclick="toggleDark()"><div class="tdot"></div></button>
+        </div>
+      </div>
+      <div class="secpad" id="libList"></div>
+      <div class="secpad" id="libPray" style="display:none;">
+        <button class="lbk" onclick="libBack()">
+          <span class="lbka">&#8249;</span>
+          <span class="lbkl">All Prayers</span>
+        </button>
+        <div class="lptitle" id="lpTitle"></div>
+        <div class="ptxt" id="lpTxt"></div>
+      </div>
+    </div>
+
+    <!-- [About Section]====================================================================== -->
+    <div id="vCal" style="display:none;">
+      <div class="hdr">
+        <div class="hdr-top">
+          <div class="htag">Beads App — About</div>
+          <button class="dtoggle" onclick="toggleDark()"><div class="tdot"></div></button>
+        </div>
+      </div>
+      <div class="secpad" id="aboutContent">
+
+        <div class="about-block">
+          <div class="about-eyebrow">About</div>
+          <div class="about-heading">Beads App</div>
+        </div>
+
+        <div class="about-divider"></div>
+
+        <div class="about-block">
+          <div class="about-eyebrow">The Inspiration</div>
+          <p class="about-body">This project was born during a <em>Prusisyon</em> (Holy Week Procession). While walking among the candles and images of saints, I noticed a modern dilemma: many participants were distracted by their phones, disconnected from the state of grace the moment called for.</p>
+          <p class="about-body" style="margin-top:12px;">I wanted to set an example by praying the Rosary, but I realized I didn't have my physical beads with me. When I searched for a digital guide, I found the options were either non-existent or, sadly, infested with intrusive advertisements that broke the spirit of prayer. I ended up using a static image, which was difficult to follow while walking.</p>
+        </div>
+
+        <div class="about-divider"></div>
+
+        <div class="about-block">
+          <div class="about-eyebrow">The Mission</div>
+          <p class="about-body">I built Beads App to be the tool I couldn't find: a clean, ad-free, and focused digital companion. It is designed to help anyone stay present in their prayer, even when they only have their phone in hand.</p>
+          <div class="about-note">
+            <svg width="13" height="13" viewBox="0 0 20 20" fill="none" style="flex-shrink:0;margin-top:2px;"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5M10 7v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>This app is a tool for convenience and learning; it is intended to aid prayer and will never be a replacement for a physical, blessed Rosary.</span>
+          </div>
+        </div>
+
+        <div class="about-divider"></div>
+
+        <div class="about-block">
+          <div class="about-eyebrow">About the Developer</div>
+          <div class="about-name">Hi, I'm Neil, a Computer Engineering student!</div>
+          <p class="about-body">I build small-scale projects like this for fun and to create elegant solutions for the personal challenges I encounter in daily life.</p>
+          <p class="about-body" style="margin-top:12px;">Made with prayer &amp; care by a Filipino Catholic developer. This app was built and is maintained as a personal project — a small act of devotion offered freely to anyone who finds it useful.</p>
+          <!-- lupet github logo -->
+          <a class="about-link" href="https://github.com/Neil-Commit" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+
+        <div class="about-footer">
+          <!--light of the worldd-->
+          <em>Lumen Mundi</em>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Cool RSS CBCP heh =================================================================================== -->
+    <div id="vNews" style="display:none;">
+      <div class="hdr">
+        <div class="hdr-top">
+          <div class="htag">Beads App - CBCP News</div>
+          <button class="dtoggle" onclick="toggleDark()"><div class="tdot"></div></button>
+        </div>
+      </div>
+      <div class="secpad" id="newsContent"></div>
+    </div>
+
+  </div>
+
+  <!-- Reddit style footer =================================================================================== -->
+  <div class="bnav">
+    <div class="ni on" id="nPray" onclick="showV('pray')">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 2V4M10 16V18M2 10H4M16 10H18M4.1 4.1L5.5 5.5M14.5 14.5L15.9 15.9M4.1 15.9L5.5 14.5M14.5 5.5L15.9 4.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="nlbl">Pray</div>
+    </div>
+    <div class="ni" id="nLib" onclick="showV('lib')">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 6H16M4 10H12M4 14H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="nlbl">Prayers</div>
+    </div>
+    <div class="ninext">
+      <button class="nbubble" onclick="nxtAction()" id="nBtn">
+        <span class="narr" id="nArr">&#8250;</span>
+      </button>
+      <div class="nnlbl" id="nLbl">Next</div>
+    </div>
+    <div class="ni" id="nNews" onclick="showV('news')">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 7H13M7 10H13M7 13H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="nlbl">CBCP</div>
+    </div>
+    <div class="ni" id="nCal" onclick="showV('cal')">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 17c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="nlbl">About</div>
+    </div>
+  </div>
+</div>
+
+<!-- Desktop compatibility (not priority) ======================================================================= -->
+<aside id="desktopSidebar">
+  <div class="sb-eyebrow">The Holy Rosary</div>
+  <div class="sb-title">Pray the<br><em>Rosary</em><br>Daily</div>
+  <div class="sb-divider"></div>
+  <div class="sb-desc">
+    A meditation on the life of Christ<br>
+    through the eyes of Our Lady.<br>
+    Each decade, a mystery.<br>
+    Each prayer, a step closer.
+  </div>
+  <div class="sb-card">
+    <div class="sb-card-label">Today's Mysteries</div>
+    <div class="sb-card-value" id="sbMystName">The <em>Joyful</em> Mysteries</div>
+    <div class="sb-card-sub" id="sbDayName">Monday</div>
+  </div>
+  <div class="sb-mysteries-label" id="sbMystLabel">Joyful Mysteries</div>
+  <div id="sbMystList"></div>
+  <div class="sb-footer">Catholic Bishops&rsquo; Conference of the Philippines</div>
+</aside>
+
+<script src="app.js"></script>
+</body>
+</html>
